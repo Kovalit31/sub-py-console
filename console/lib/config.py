@@ -6,3 +6,4 @@ Sub-Py console
 Universal Python console for starting and working with user input commands.
 '''
 LICENSE = "GNU General Public License, version 2"
+DEBUG = 1
