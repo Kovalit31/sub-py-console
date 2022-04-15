@@ -1,4 +1,4 @@
-def main():
+def main(*args):
     print("Example\n")
 
 def get_metadata():
