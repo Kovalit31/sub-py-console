@@ -1,4 +1,3 @@
-from importlib.resources import path
 import os
 
 path_installed = __file__.split(os.sep)
@@ -9,6 +8,7 @@ for x in range(len(path_installed)):
     if path_installed[x] == "..":
         path_installed.pop(x)
         path_installed.pop(x-1)
+path_installed = os.sep.join(path_installed)
 path_in = path_installed + os.sep + "console"
 path_bin = path_in + os.sep + "bin"
 path_lib = path_in + os.sep + "lib"
