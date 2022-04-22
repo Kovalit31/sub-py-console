@@ -1,6 +1,7 @@
 import os
 
 path_installed = __file__.split(os.sep)
+path_installed.pop()
 for x in path_installed:
     if x == " " or x == ".":
         path_installed.remove(x)
