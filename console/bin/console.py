@@ -1,6 +1,15 @@
 from lib.console import config
 import importlib
+import os
 
+
+try:
+    if config.ENV_PATH_ALL:
+        pass
+    else:
+        raise Exception("Cannot start console without known installation path")
+except:
+    raise Exception("Cannot install module without known installation path")
 
 def command_starter():
     while True:
@@ -18,7 +27,7 @@ def command_starter():
 
 
 def command_init(whatuse):
-    with open("command_py.py", "w") as f:
+    with open(config.ENV_BIN_PATH + os.sep +"command_py.py", "w") as f:
         if "." in whatuse[0]:
             f.write(
                 f"from {config.MODULE_BIN_PATH}.{''.join(whatuse[0].split('.')[0:-1])} import {whatuse[0].split('.')[-1]}\n"
@@ -31,7 +40,7 @@ def command_init(whatuse):
             f.write("{0}.main({1})".format(whatuse[0], whatuse[1:]))
         f.close()
     try:
-        import command_py
+        from bin import command_py
         importlib.reload(command_py)
         command_py.main()
     except Exception as e:

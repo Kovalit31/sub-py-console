@@ -2,7 +2,7 @@ from lib.console import config
 
 def main(*args):
     try:
-        if config.PATH:
+        if config.ENV_PATH_ALL:
             pass
         else:
             raise Exception("Cannot install module without known installation path")
