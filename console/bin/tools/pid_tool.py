@@ -15,6 +15,7 @@ def create_pid(command_arr, module="default"):
             f.close()
     try:
         from tmp import count
+        importlib.reload(count)
         counter = count.COUNT
         word_count = count_to_word.main(counter)
         with open(os.path.join(pid.PATH, f"{module}_{'_'.join(word_count)}.py"), "w") as f:
@@ -35,20 +36,18 @@ def create_pid(command_arr, module="default"):
         f.close()
     return counter
 
-def start_pid(pid, pid_module="default", module="default"):
-    filename = "{0}_{1}.py".format(module, "_".join(count_to_word.main(pid)))
-    path = os.path.join(pid.PATH, filename)
+def start_pid(_pid, pid_module="default", module="default"):
+    count_word = "_".join(count_to_word.main(_pid))
+    filename = "{0}_{1}_command.py".format(module)
+    path = os.path.join(run.PATH, filename)
     try:
-        with open(os.path.join(run.PATH, f"{module}_command.py"), "w") as f:
-            f.write(f"from run.pid import {pid_module}_{pid}\ndef main():\n\t{pid_module}_{pid}.main()")
+        with open(path, "w") as f:
+            f.write(f"import importlib\nfrom run.pid import {pid_module}_{count_word}\nimportlib.reload({pid_module}_{count_word})\ndef main():\n\t{pid_module}_{count_word}.main()")
             f.close()
     except:
         print(f'I/O error: Cannot open file: {path}\n')
-    try:
-        pass
-    except:
-        pass
-    return False
+        return False
+    return True
 
 def main(*args):
     print("Cannot load command as main file.\nUse it as module.")

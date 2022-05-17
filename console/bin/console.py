@@ -16,7 +16,8 @@ def command_starter():
             if inputed and inputed != 'exit':
                 command_arr = inputed.split(" ")
                 c = pid_tool.create_pid(command_arr, module="console")
-                
+                if pid_tool.start_pid():
+                    pass
             elif inputed == 'exit':
                 break
             else:
