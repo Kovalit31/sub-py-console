@@ -38,11 +38,11 @@ def create_pid(command_arr, module="default"):
 
 def start_pid(_pid, pid_module="default", module="default"):
     count_word = "_".join(count_to_word.main(_pid))
-    filename = "{0}_{1}_command.py".format(module)
+    filename = "{0}_command.py".format(module)
     path = os.path.join(run.PATH, filename)
     try:
         with open(path, "w") as f:
-            f.write(f"import importlib\nfrom run.pid import {pid_module}_{count_word}\nimportlib.reload({pid_module}_{count_word})\ndef main():\n\t{pid_module}_{count_word}.main()")
+            f.write(f"import importlib\nimport run.pid\nfrom run.pid import {pid_module}_{count_word}\nimportlib.reload(run.pid)\nimportlib.reload({pid_module}_{count_word})\ndef main():\n\t{pid_module}_{count_word}.main()")
             f.close()
     except:
         print(f'I/O error: Cannot open file: {path}\n')

@@ -16,35 +16,27 @@ def command_starter():
             if inputed and inputed != 'exit':
                 command_arr = inputed.split(" ")
                 c = pid_tool.create_pid(command_arr, module="console")
-                if pid_tool.start_pid():
-                    pass
+                if pid_tool.start_pid(c, pid_module="console", module="console"):
+                    start_command(command_arr[0])
             elif inputed == 'exit':
-                break
+                raise EOFError()
             else:
                 pass
         except EOFError or KeyboardInterrupt:
-            target_dir = pid.PATH
-            contents = [os.path.join(target_dir, i) for i in os.listdir(target_dir)]
-            for x in contents:
-                if not x.endswith("__init__.py"):
-                    if os.path.isfile(x) or os.path.islink(x):
-                        os.remove(x)
-                    else:
-                        shutil.rmtree(x)
-            target_dir = tmp.PATH
-            contents = [os.path.join(target_dir, i) for i in os.listdir(target_dir)]
-            for x in contents:
-                if not x.endswith("__init__.py"):
-                    if os.path.isfile(x) or os.path.islink(x):
-                        os.remove(x)
-                    else:
-                        shutil.rmtree(x)
+            target_dirs = [pid.PATH, run.PATH, tmp.PATH]
+            for y in target_dirs:
+                target_dir = y
+                contents = [os.path.join(target_dir, i) for i in os.listdir(target_dir)]
+                for x in contents:
+                    if not x.endswith("__init__.py") and not x.endswith("pid"):
+                        if os.path.isfile(x) or os.path.islink(x):
+                            os.remove(x)
+                        else:
+                            shutil.rmtree(x)
+
             break
 
-def start_command(command, pid):
-    with open(os.path.join(run.PATH, "console_command.py"), "w") as f:
-        f.write(f"from run.pid import command_{pid}\ndef main():\n\tcommand_{pid}.main()")
-        f.close()
+def start_command(command):
     try:
         from run import console_command
         importlib.reload(console_command)
