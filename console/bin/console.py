@@ -33,7 +33,6 @@ def command_starter():
                             os.remove(x)
                         else:
                             shutil.rmtree(x)
-
             break
 
 def start_command(command):
