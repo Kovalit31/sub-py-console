@@ -66,7 +66,7 @@ def stopped_pid(_pid, if_nohup=False):
         pass # Do nothing.
 
 
-def main(*args):
+def main(args):
     print("Cannot load command as main file.\nUse it as module.")
 
 # arr = count_to_word.main(count)

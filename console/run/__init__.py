@@ -1,5 +1,5 @@
-import importlib
-import os
-PATH = os.path.dirname(__file__)
+from os.path import dirname
+from importlib import reload
 from . import pid
-importlib.reload(pid)
+reload(pid)
+PATH = dirname(__file__)

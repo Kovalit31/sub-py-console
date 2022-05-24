@@ -1,12 +1,11 @@
 import importlib
 import shutil
 import os
-from bin.tools import count_to_word
 from bin.tools import pid_tool
-import tmp
 from lib.console import config
 import run
 from run import pid
+import tmp
 
 
 def command_starter():
@@ -37,41 +36,27 @@ def command_starter():
 
 def start_command(command):
     try:
-        from run import console_command
-        importlib.reload(console_command)
-        console_command.main()
+        while True:
+            try:
+                from run import console_command
+                importlib.reload(console_command)
+                console_command.main()
+                break
+            except:
+                pass
     except Exception as e:
         if config.DEBUG:
             print(e)
             print(dir())
             print("run PATH: ", run.PATH)
-        if e:
-            print(f"Cannot start '{command}' command: Error occured.")
-            print("Please check command availability and try again.")
-
-
-# def command_init(whatuse, count):
-#     arr = count_to_word.main(count)
-#     with open(os.path.join(pid.PATH, f"command_{'_'.join(arr)}.py"), "w") as f:
-#         if "." in whatuse[0]:
-#             f.write(
-#                 f"from {config.MODULE_BIN_PATH}.{''.join(whatuse[0].split('.')[0:-1])} import {whatuse[0].split('.')[-1]}\n"
-#             )
-#             f.write(f"def main():\n    ")
-#             f.write("{0}.main({1})".format(whatuse[0].split('.')[-1], whatuse[1:]))
-#         else:
-#             f.write(f"from {config.MODULE_BIN_PATH} import {whatuse[0]}\n")
-#             f.write(f"def main():\n    ")
-#             f.write("{0}.main({1})".format(whatuse[0], whatuse[1:]))
-#         count += 1
-#         f.close()
-#         start_command(whatuse[0], '_'.join(arr))
-#         return count
-
-    
+        print(f"Cannot start '{command}' command: Error occured.")
+        print("Please check command availability and try again.")
 
 
 def main(*args):
-    print(config.HAT)
-    print("Licensed under", config.LICENSE)
+    print('''
+Sub-Py console
+Universal Python console for starting and working with user input commands.
+''')
+    print("Licensed under GNU General Public License, version 2")
     command_starter()

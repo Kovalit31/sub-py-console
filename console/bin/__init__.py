@@ -1,6 +1,6 @@
-import os
-import importlib
+from importlib import reload
+from os.path import dirname
 from . import *
 from . import tools
-importlib.reload(tools)
-PATH = os.path.dirname(__file__)
+reload(tools)
+PATH = dirname(__file__)

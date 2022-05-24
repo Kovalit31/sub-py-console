@@ -1,9 +1,11 @@
-import importlib
+from importlib import reload
+from os.path import dirname
 from . import bin
 from . import lib
 from . import run
 from . import tmp
-importlib.reload(bin)
-importlib.reload(lib)
-importlib.reload(run)
-importlib.reload(tmp)
+reload(bin)
+reload(lib)
+reload(run)
+reload(tmp)
+PATH = dirname(__file__)

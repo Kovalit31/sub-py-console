@@ -1,3 +1,4 @@
-import os
-PATH = os.path.dirname(__file__)
+from importlib import reload
+from os.path import dirname
 from . import *
+PATH = dirname(__file__)

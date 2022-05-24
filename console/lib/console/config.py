@@ -1,11 +1,9 @@
-HAT = '''
-Sub-Py console
-Universal Python console for starting and working with user input commands.
-'''
-LICENSE = "GNU General Public License, version 2"
 VERSION = "0.9.0"
 SUBVERSION = "beta"
 PS1 = ">>"
 MODULE_BIN_PATH = "bin"
 MODULE_LIB_PATH = "lib"
+COMPILED = 0
+COMPILED_EXT = ".pyc"
+NOCOMPILED_EXT = ".py"
 DEBUG = 1
