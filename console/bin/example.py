@@ -5,7 +5,7 @@ def main(args):
     try:
         if args[0] == "start_command":
             from bin import PATH
-            from bin.tools import pid_tool
+            from lib.console.tools import pid_tool
             with open(os.path.join(PATH, "new_example.py"), "w") as f:
                 f.write('def main(args):\n\tprint("Command Started")')
             pid = pid_tool.create_pid(["new_example"], module="example", nohup=True)

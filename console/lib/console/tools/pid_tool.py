@@ -1,7 +1,7 @@
 import os
 import importlib
 from lib.console import config
-from bin.tools import count_to_word
+from lib.console.tools import count_to_word
 import tmp
 import run
 from run import pid

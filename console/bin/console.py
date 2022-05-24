@@ -1,8 +1,8 @@
 import importlib
 import shutil
 import os
-from bin.tools import pid_tool
 from lib.console import config
+from lib.console.tools import pid_tool
 import run
 from run import pid
 import tmp
@@ -36,14 +36,18 @@ def command_starter():
 
 def start_command(command):
     try:
-        while True:
+        x = 0
+        while x < 3:
             try:
                 from run import console_command
                 importlib.reload(console_command)
                 console_command.main()
                 break
             except:
-                pass
+                if x + 1 < 3:
+                    x += 1
+                else:
+                    raise RuntimeError()
     except Exception as e:
         if config.DEBUG:
             print(e)
