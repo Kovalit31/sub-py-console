@@ -1,7 +1,0 @@
-{
-    "python.analysis.extraPaths":[
-        "./console",
-        "./console"
-    ],
-    "python.analysis.logLevel": "Trace"
-}
