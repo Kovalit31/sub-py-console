@@ -1,4 +1,4 @@
-VERSION = "0.9.0"
+VERSION = "0.9.9"
 SUBVERSION = "beta"
 PS1 = ">>"
 MODULE_BIN_PATH = "bin"
