@@ -20,6 +20,7 @@ def main(args):
                         break
                     except:
                         pass
+                os.remove(os.path.join(PATH, "new_example.py"))
             except:
                 print("Error occured")
                 pid_tool.stopped_pid(pid, if_nohup=True)
